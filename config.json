@@ -1,0 +1,19 @@
+{
+    "ebranch": {
+        "app_path": "C:\\Program Files (x86)\\e-branch\\e-branch.exe",
+        "window_title": "e-branch",
+        "login_timeout": 60,
+        "page_load_timeout": 30
+    },
+    "certificate": {
+        "password": ""
+    },
+    "download": {
+        "save_folder": "C:\\Users\\%USERNAME%\\Desktop\\일별시재",
+        "file_prefix": "일별시재_",
+        "wait_seconds": 10
+    },
+    "schedule": {
+        "run_time": "09:00"
+    }
+}
