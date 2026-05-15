@@ -9,7 +9,7 @@
         "password": ""
     },
     "download": {
-        "save_folder": "C:\\Users\\%USERNAME%\\Desktop\\일별시재",
+        "save_folder": "C:\\Users\\%USERNAME%\\Desktop\\강소영",
         "file_prefix": "일별시재_",
         "wait_seconds": 10
     },
