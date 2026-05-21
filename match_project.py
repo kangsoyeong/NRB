@@ -10,10 +10,10 @@ from rapidfuzz import fuzz, process
 
 # ─── 설정 ──────────────────────────────────────────────────────────────
 INPUT_FILE     = "8595a992-4_______.xlsx"
-CASHFLOW_FILE  = "77b16bf3-______.xlsx"
+CASHFLOW_FILE  = "8542feab-_________.xlsx"
 
 INPUT_DIR      = "/root/.claude/uploads/0d0eb156-6c70-465c-9460-f5055014f83c"
-CASHFLOW_DIR   = "/root/.claude/uploads/0d0eb156-6c70-465c-9460-f5055014f83c"
+CASHFLOW_DIR   = "/root/.claude/uploads/4a48c333-2339-407e-bd3f-a433abc945d8"
 
 INPUT_SHEET    = "입,출금 상세(4월)"
 CASHFLOW_SHEET = 0
