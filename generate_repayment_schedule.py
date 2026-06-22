@@ -125,8 +125,8 @@ def build_schedule(loan):
     return rows
 
 
-def acct_prefix(account):
-    return account.split("-")[0]
+def acct_suffix(account):
+    return account.split("-")[-1]
 
 
 # ---------------------------------------------------------------------------
@@ -135,12 +135,12 @@ def acct_prefix(account):
 records = []
 for loan in LOANS:
     for s in build_schedule(loan):
-        prefix = acct_prefix(loan["account"])
+        suffix = acct_suffix(loan["account"])
         # 이자 행
         records.append({
             "date": s["date"],
             "fund": "이자",
-            "client": f"{loan['bank'][:2]} {prefix}",
+            "client": f"{loan['bank'][:2]} {suffix}",
             "bank": loan["bank"],
             "account": loan["account"],
             "summary": f"{loan['account']} 이자",
@@ -151,7 +151,7 @@ for loan in LOANS:
         records.append({
             "date": s["date"],
             "fund": "원금",
-            "client": f"{loan['bank'][:2]} {prefix}",
+            "client": f"{loan['bank'][:2]} {suffix}",
             "bank": loan["bank"],
             "account": loan["account"],
             "summary": f"{loan['account']} 원금",
