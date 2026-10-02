@@ -1,0 +1,215 @@
+<title>NRB 법인카드 조직도</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* 레이아웃: 대표이사 → 본부 4열 트리. 부서마다 보유 카드를 칩으로 표시, 바뀌는 카드만 색으로 강조 */
+:root{
+  --bg:#f3f5f7; --panel:#ffffff; --fg:#1d2630; --muted:#5f6b78; --line:#c9d1da;
+  --accent:#2f5d8a; --accent-soft:#e3ecf5;
+  --new:#1f7a4d; --new-soft:#dff2e7;
+  --chk:#9a5b00; --chk-soft:#fbecd2;
+  --del:#a23a3a; --del-soft:#f6e0e0;
+  --chip:#eef1f4;
+  --sans:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#12171d; --panel:#1a2129; --fg:#e4e9ee; --muted:#9aa6b2; --line:#33404d;
+  --accent:#7fb0e0; --accent-soft:#1f3347;
+  --new:#6fd3a0; --new-soft:#173a2a; --chk:#f0b65a; --chk-soft:#3d2e14;
+  --del:#ef8f8f; --del-soft:#3e1f1f; --chip:#242d37; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12171d; --panel:#1a2129; --fg:#e4e9ee; --muted:#9aa6b2; --line:#33404d;
+  --accent:#7fb0e0; --accent-soft:#1f3347;
+  --new:#6fd3a0; --new-soft:#173a2a; --chk:#f0b65a; --chk-soft:#3d2e14;
+  --del:#ef8f8f; --del-soft:#3e1f1f; --chip:#242d37; color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:14px;line-height:1.5}
+.wrap{max-width:1400px;margin:0 auto;padding-inline:16px;padding-block:28px 48px}
+h1{font-size:22px;margin:0;text-wrap:balance}
+.sub{color:var(--muted);margin:4px 0 0}
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;margin:18px 0 22px;padding:12px 14px;background:var(--panel);border:1px solid var(--line);border-radius:8px;font-size:13px}
+.legend>div{display:flex;align-items:center;gap:6px}
+.ceo{display:flex;justify-content:center;margin-bottom:8px}
+.ceo .unit{min-width:240px;border:2px solid var(--accent)}
+.stem{width:2px;height:18px;background:var(--line);margin:0 auto}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;border-top:2px solid var(--line);padding-top:16px;align-items:start}
+.col{display:flex;flex-direction:column;gap:10px;min-width:0}
+.hq{background:var(--accent);color:#fff;border-radius:8px;padding:10px 12px}
+:root[data-theme="dark"] .hq{color:#0d1620}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .hq{color:#0d1620}}
+.hq b{font-size:16px}
+.hq .who{opacity:.85;font-size:13px}
+.hq .chips{margin-top:6px}
+.unit{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:9px 11px}
+.unit.flag{border-color:var(--new)}
+.unit.warn{border-color:var(--chk)}
+.name{font-weight:700}
+.who{color:var(--muted);font-size:12.5px}
+.kids{margin:8px 0 0 6px;padding-left:12px;border-left:2px solid var(--line);display:flex;flex-direction:column;gap:8px}
+.chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+.c{display:inline-flex;align-items:center;gap:4px;font-size:12px;padding:2px 8px;border-radius:999px;background:var(--chip);color:var(--fg);white-space:nowrap}
+.c i{font-style:normal;font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:var(--muted)}
+.c.new{background:var(--new-soft);color:var(--new);font-weight:500}
+.c.new i,.c.chk i,.c.del i{color:inherit}
+.c.chk{background:var(--chk-soft);color:var(--chk);font-weight:500}
+.c.del{background:var(--del-soft);color:var(--del);text-decoration:line-through}
+.note{font-size:12px;color:var(--muted);margin-top:4px}
+.bottom{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-top:28px}
+.box{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:14px 16px;min-width:0}
+.box h2{font-size:15px;margin:0 0 8px}
+.box ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px}
+table{border-collapse:collapse;width:100%;font-size:13px}
+td{padding:5px 4px;border-bottom:1px solid var(--line);vertical-align:top}
+td:first-child{white-space:nowrap;color:var(--del)}
+td:last-child{color:var(--new)}
+</style>
+
+<div class="wrap">
+  <h1>NRB 법인카드 조직도</h1>
+  <p class="sub">2026.10.01 조직개편 기준 · 팀장 1장, 현장은 실장 명의 추가 · 하이패스·연구비·전기차 카드 제외</p>
+
+  <div class="legend">
+    <div><span class="c"><i>기명</i>개인</span> 본인 명의 카드</div>
+    <div><span class="c"><i>공용</i>팀</span> 팀장 앞 공용카드</div>
+    <div><span class="c"><i>현장</i>×2</span> 실장 명의로 현장에 추가</div>
+    <div><span class="c new"><i>받음</i>← 출처</span> 다른 부서에서 넘겨받는 카드</div>
+    <div><span class="c chk"><i>확인</i></span> 확인 후 확정</div>
+    <div><span class="c del"><i>회수</i></span> 회수·해지 검토</div>
+  </div>
+
+  <div class="ceo"><div class="unit"><div class="name">대표이사 · 강건우</div><div class="chips"><span class="c"><i>기명</i>개인</span><span class="c"><i>공용</i>대표이사(1)</span></div></div></div>
+  <div class="stem"></div>
+
+  <div class="cols">
+    <!-- R&D -->
+    <div class="col">
+      <div class="hq"><b>R&amp;D본부</b> <span class="who">본부장 김갑득</span><div class="chips"><span class="c"><i>기명</i>개인</span></div></div>
+      <div class="kids">
+        <div class="unit"><div class="name">전략기술개발실</div><div class="who">실장 송성훈 (연구소장 겸)</div><div class="chips"><span class="c"><i>기명</i>개인</span></div><div class="note">연구비카드는 과제 기준으로 그대로 유지</div></div>
+        <div class="unit flag"><div class="name">D-LAB 1실 <small>신설</small></div><div class="who">실장 김용남</div><div class="chips"><span class="c new"><i>받음</i>← 설계2실 조지은(1)</span><span class="c del"><i>회수</i>외부 고문카드</span></div></div>
+        <div class="unit"><div class="name">D-LAB 2실</div><div class="who">실장 서윤희</div><div class="chips"><span class="c"><i>공용</i>이름만 변경</span></div>
+          <div class="kids">
+            <div class="unit flag"><div class="name">디지털기술 실증팀 <small>신설</small></div><div class="who">팀장 구수진</div><div class="chips"><span class="c new"><i>받음</i>← 설계2실 조지은(2)</span></div></div>
+          </div>
+        </div>
+        <div class="unit"><div class="name">표준모델 개발TF</div><div class="who">TF장 최진달미</div><div class="chips"><span class="c"><i>기명</i>개인</span></div></div>
+      </div>
+    </div>
+
+    <!-- 사업관리 -->
+    <div class="col">
+      <div class="hq"><b>사업관리본부</b> <span class="who">본부장 김동우</span><div class="chips"><span class="c"><i>기명</i>개인</span></div></div>
+      <div class="kids">
+        <div class="unit"><div class="name">사업기획팀</div><div class="who">팀장 이성규</div><div class="chips"><span class="c"><i>공용</i>팀</span></div></div>
+        <div class="unit"><div class="name">사업지원팀</div><div class="who">팀장 김동규</div><div class="chips"><span class="c"><i>공용</i>팀</span></div></div>
+        <div class="unit"><div class="name">사업관리1실</div><div class="who">실장 김승현</div><div class="chips"><span class="c"><i>기명</i>개인</span></div></div>
+        <div class="unit"><div class="name">사업관리2실</div><div class="who">실장 주현철</div><div class="chips"><span class="c"><i>기명</i>개인</span></div>
+          <div class="kids">
+            <div class="unit"><div class="name">사업관리팀</div><div class="who">팀장 이완구</div><div class="chips"><span class="c"><i>공용</i>팀</span></div></div>
+            <div class="unit"><div class="name">영업기획팀</div><div class="who">팀장 문광정</div><div class="chips"><span class="c"><i>공용</i>×2</span></div></div>
+          </div>
+        </div>
+        <div class="unit flag"><div class="name">설계실 <small>1·2실 통합</small></div><div class="who">실장 오진택</div><div class="chips"><span class="c"><i>기명</i>개인</span><span class="c new"><i>받음</i>← 설계1실 최우제</span></div><div class="note">최우제 상무는 실원이 되어 기명카드 회수 검토 <span class="c del"><i>회수</i>최우제 기명</span></div></div>
+      </div>
+    </div>
+
+    <!-- OSC -->
+    <div class="col">
+      <div class="hq"><b>OSC사업본부</b> <span class="who">본부장 대행 정윤영</span><div class="chips"><span class="c"><i>기명</i>개인</span></div></div>
+      <div class="kids">
+        <div class="unit"><div class="name">기술지원실</div><div class="who">실장 이종명</div><div class="chips"><span class="c"><i>기명</i>개인</span></div>
+          <div class="kids">
+            <div class="unit"><div class="name">기술지원1그룹</div><div class="who">그룹장 박정희</div><div class="chips"><span class="c"><i>기명</i>개인</span></div></div>
+            <div class="unit"><div class="name">기술지원2그룹</div><div class="who">그룹장 조현탁</div><div class="chips"><span class="c"><i>공용</i>이름만 변경</span></div></div>
+            <div class="unit"><div class="name">MEP팀</div><div class="who">팀장 김진원</div><div class="chips"><span class="c"><i>공용</i>팀</span></div><div class="note">문자 받는 사람 정은희 → MEP팀원으로 변경</div></div>
+          </div>
+        </div>
+        <div class="unit"><div class="name">OSC사업1실</div><div class="who">실장 정윤영 (현장 카드 명의자)</div>
+          <div class="kids">
+            <div class="unit"><div class="name">의왕초평 A-4 현장</div><div class="who">소장 박재성</div><div class="chips"><span class="c"><i>현장</i>×2 그대로</span></div></div>
+            <div class="unit flag"><div class="name">고흥 현장</div><div class="who">소장 박진우</div><div class="chips"><span class="c new"><i>받음</i>← 고흥 김창훈</span><span class="c new"><i>받음</i>← 완도 최병환</span></div></div>
+          </div>
+        </div>
+        <div class="unit flag"><div class="name">OSC사업2실</div><div class="who">실장 김춘식 (현장 카드 명의자)</div><div class="chips"><span class="c"><i>기명</i>개인</span><span class="c"><i>현장</i>×3 그대로</span><span class="c new"><i>받음</i>← 공사3팀 김성기</span></div>
+          <div class="kids">
+            <div class="unit warn"><div class="name">설치팀 <small>공사2·3팀 통합</small></div><div class="who">팀장 미정</div><div class="chips"><span class="c new"><i>받음</i>← 공사2팀 김효석</span><span class="c chk"><i>확인</i>팀장 지정 필요</span></div></div>
+            <div class="unit flag"><div class="name">자산관리팀</div><div class="who">팀장 허영봉 (신임)</div><div class="chips"><span class="c new"><i>받음</i>← 김성웅 명의 ×2</span></div></div>
+          </div>
+        </div>
+        <div class="unit"><div class="name">군산1공장</div><div class="who">공장장 최대헌 · 부공장장 이봉구</div><div class="chips"><span class="c"><i>기명</i>최대헌</span><span class="c"><i>기명</i>이봉구</span></div>
+          <div class="kids">
+            <div class="unit"><div class="name">생산1팀</div><div class="who">팀장 이광록</div><div class="chips"><span class="c"><i>공용</i>팀</span></div></div>
+            <div class="unit"><div class="name">생산2팀 · 품질환경팀</div><div class="who">팀장 양상하 (겸)</div><div class="chips"><span class="c"><i>공용</i>1장 같이 사용</span></div></div>
+            <div class="unit"><div class="name">공무팀</div><div class="who">팀장 강민수</div><div class="chips"><span class="c"><i>공용</i>팀</span></div></div>
+            <div class="unit"><div class="name">PC설계팀</div><div class="who">팀장 최대헌 (겸)</div><div class="note">공장장 기명카드 사용, 추가 없음</div></div>
+          </div>
+        </div>
+        <div class="unit"><div class="name">군산2공장</div><div class="who">공장장 조재훈 · 부공장장 강성율</div><div class="chips"><span class="c"><i>기명</i>조재훈</span><span class="c"><i>공용</i>강성율</span></div>
+          <div class="kids">
+            <div class="unit"><div class="name">구조관리팀</div><div class="who">팀장 이창곤</div><div class="chips"><span class="c"><i>공용</i>팀</span></div></div>
+            <div class="unit"><div class="name">마감관리팀</div><div class="who">팀장 김태구</div><div class="chips"><span class="c"><i>공용</i>팀</span></div></div>
+            <div class="unit"><div class="name">지원팀</div><div class="who">팀장 진길종</div><div class="chips"><span class="c"><i>공용</i>팀</span></div></div>
+            <div class="unit"><div class="name">김제공장</div><div class="who">공장장 김윤오</div><div class="chips"><span class="c"><i>공용</i>공장</span><span class="c"><i>공용</i>출장용</span></div>
+              <div class="kids">
+                <div class="unit flag"><div class="name">생산설치팀 <small>신설</small></div><div class="who">팀장 김태봉</div><div class="chips"><span class="c new"><i>받음</i>← 공사1팀 박진우</span></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 직속 -->
+    <div class="col">
+      <div class="hq"><b>대표이사 직속</b></div>
+      <div class="kids">
+        <div class="unit"><div class="name">신사업개발실</div><div class="who">실장 김태우</div><div class="chips"><span class="c"><i>기명</i>개인</span><span class="c"><i>공용</i>관리 박종철</span></div></div>
+        <div class="unit"><div class="name">안전보건실</div><div class="who">실장 표범주</div><div class="chips"><span class="c"><i>공용</i>이름만 변경</span></div>
+          <div class="kids">
+            <div class="unit warn"><div class="name">안전보건팀</div><div class="who">팀장 김영군 (신임)</div><div class="chips"><span class="c chk"><i>확인</i>← 배용덕 공용카드</span></div><div class="note">배용덕 전무 카드가 회수되면 넘김, 아니면 1장 신규</div></div>
+          </div>
+        </div>
+        <div class="unit"><div class="name">경영기획실</div><div class="who">실장 김명진</div><div class="chips"><span class="c"><i>기명</i>개인</span></div>
+          <div class="kids">
+            <div class="unit"><div class="name">경영기획1팀</div><div class="who">팀장 이경태</div><div class="chips"><span class="c"><i>공용</i>팀</span><span class="c"><i>공용</i>군산출장 ×3</span><span class="c"><i>공용</i>여분5</span></div></div>
+            <div class="unit"><div class="name">경영기획2팀</div><div class="who">팀장 김명진 (겸) · 관리 조승제</div><div class="chips"><span class="c"><i>공용</i>팀</span><span class="c"><i>공용</i>서울출장 ×4</span><span class="c"><i>공용</i>여분1</span><span class="c"><i>체크</i>1</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="box">
+      <h2>카드 이동 한눈에 (10장)</h2>
+      <div style="overflow-x:auto">
+      <table>
+        <tr><td>설계2실 조지은(1)</td><td>→</td><td>D-LAB 1실 김용남</td></tr>
+        <tr><td>설계2실 조지은(2)</td><td>→</td><td>실증팀 구수진</td></tr>
+        <tr><td>설계1실 최우제</td><td>→</td><td>설계실 오진택</td></tr>
+        <tr><td>공사1팀 박진우</td><td>→</td><td>김제 생산설치팀 김태봉</td></tr>
+        <tr><td>공사2팀 김효석</td><td>→</td><td>설치팀 (팀장 미정)</td></tr>
+        <tr><td>공사3팀 김성기</td><td>→</td><td>OSC사업2실 김춘식 현장용</td></tr>
+        <tr><td>자산관리팀 김성웅 ×2</td><td>→</td><td>자산관리팀 허영봉</td></tr>
+        <tr><td>고흥 김창훈 · 완도 최병환</td><td>→</td><td>고흥 현장 (정윤영 명의)</td></tr>
+      </table>
+      </div>
+    </div>
+    <div class="box">
+      <h2>결정이 필요한 것</h2>
+      <ul>
+        <li><b>배용덕 전무</b>: 발령 명단에 없음. 공용카드와 하이패스를 회수할지</li>
+        <li><b>최우제 상무</b>: 직책이 없어졌는데 기명카드를 유지할지</li>
+        <li><b>설치팀장</b>: 누구로 정할지</li>
+        <li><b>김용남 실장</b>: 외부 고문카드 해지</li>
+      </ul>
+      <h2 style="margin-top:14px">이렇게 진행하면 됩니다</h2>
+      <ul>
+        <li>없어진 부서 카드 실물 회수</li>
+        <li>은행 사이트에서 카드 별명·문자 받는 사람 변경</li>
+        <li>새 담당자에게 인수증 받고 전달</li>
+        <li>9/30까지 사용분은 이전 부서, 10/1부터는 새 부서로 정산</li>
+      </ul>
+    </div>
+  </div>
+</div>
